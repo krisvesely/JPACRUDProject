@@ -21,13 +21,21 @@ public class TaskDAOImpl implements TaskDAO {
 	public Task findById(int taskId) {
 		return em.find(Task.class, taskId);
 	}
+	
+	@Override
+	public List<Task> findByKeyword(String keyword) {
+		String queryString = "SELECT task FROM Task task WHERE task.name LIKE OR task.category LIKE OR task.notes LIKE ";
+		List<Task> taskList = em.createQuery(queryString, Task.class)
+				.getResultList();
+		return taskList;
+	}
 
 	@Override
 	public List<Task> findAll() {
 		String queryString = "SELECT task FROM Task task";
-		List<Task> allTasks = em.createQuery(queryString, Task.class)
+		List<Task> taskList = em.createQuery(queryString, Task.class)
 				.getResultList();
-		return allTasks;
+		return taskList;
 	}
 
 	@Override

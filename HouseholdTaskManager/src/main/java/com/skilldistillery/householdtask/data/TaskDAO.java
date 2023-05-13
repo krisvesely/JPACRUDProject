@@ -7,6 +7,7 @@ import com.skilldistillery.householdtask.entities.Task;
 public interface TaskDAO {
 
 	Task findById(int taskId);
+	List<Task> findByKeyword(String keyword);
 	List<Task> findAll();
 	
 	Task create(Task task);

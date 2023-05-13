@@ -43,6 +43,13 @@ class TaskTest {
 	void test_Task_entity_mapping() {
 		assertNotNull(task);
 		assertEquals("Insulate Pipes", task.getName());
+		assertEquals("Home - Crawlspace", task.getCategory());
+		assertEquals("one-time", task.getFrequency());
+		assertEquals(2023, task.getDateRequired().getYear());
+		assertEquals(12, task.getDateRequired().getMonthValue());
+		assertEquals(1, task.getDateRequired().getDayOfMonth());
+		assertEquals(84.00, task.getCost());
+		assertEquals(null, task.getNotes());
 	}
 
 }

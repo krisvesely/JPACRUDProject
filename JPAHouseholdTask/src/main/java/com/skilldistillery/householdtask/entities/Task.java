@@ -1,5 +1,8 @@
 package com.skilldistillery.householdtask.entities;
 
+import java.time.LocalDate;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,10 +17,22 @@ public class Task {
 	
 	private String name;
 	
+	private String category;
+	
 	private String frequency;
 	
+	@Column(name="date_last_completed")
+	private LocalDate dateLastCompleted;
+	
+	@Column(name="date_required")
+	private LocalDate dateRequired;
+	
+	private double cost;
+	
+	private String notes;
+	
 	public Task() {}
-
+	
 	public int getId() {
 		return id;
 	}
@@ -34,6 +49,14 @@ public class Task {
 		this.name = name;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	public String getFrequency() {
 		return frequency;
 	}
@@ -42,9 +65,42 @@ public class Task {
 		this.frequency = frequency;
 	}
 
+	public LocalDate getDateLastCompleted() {
+		return dateLastCompleted;
+	}
+
+	public void setDateLastCompleted(LocalDate dateLastCompleted) {
+		this.dateLastCompleted = dateLastCompleted;
+	}
+
+	public LocalDate getDateRequired() {
+		return dateRequired;
+	}
+
+	public void setDateRequired(LocalDate dateRequired) {
+		this.dateRequired = dateRequired;
+	}
+
+	public double getCost() {
+		return cost;
+	}
+
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
 	@Override
 	public String toString() {
-		return "Task [id=" + id + ", name=" + name + ", frequency=" + frequency + "]";
+		return "Task [id=" + id + ", name=" + name + ", category=" + category + ", frequency=" + frequency
+				+ ", dateLastCompleted=" + dateLastCompleted + ", dateRequired=" + dateRequired + ", cost=" + cost
+				+ ", notes=" + notes + "]";
 	}
-	
 }
