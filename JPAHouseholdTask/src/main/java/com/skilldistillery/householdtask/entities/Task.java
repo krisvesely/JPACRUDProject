@@ -1,5 +1,7 @@
 package com.skilldistillery.householdtask.entities;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -69,16 +71,16 @@ public class Task {
 		return dateLastCompleted;
 	}
 
-	public void setDateLastCompleted(LocalDate dateLastCompleted) {
-		this.dateLastCompleted = dateLastCompleted;
+	public void setDateLastCompleted(String dateLastCompleted) {
+		this.dateLastCompleted = LocalDate.parse(dateLastCompleted);
 	}
 
 	public LocalDate getDateRequired() {
 		return dateRequired;
 	}
 
-	public void setDateRequired(LocalDate dateRequired) {
-		this.dateRequired = dateRequired;
+	public void setDateRequired(String dateRequired) {
+		this.dateRequired = LocalDate.parse(dateRequired);
 	}
 
 	public double getCost() {
@@ -94,7 +96,7 @@ public class Task {
 	}
 
 	public void setNotes(String notes) {
-		this.notes = notes;
+		this.notes = LocalDate.now().toString() + ": " + notes;
 	}
 
 	@Override

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.householdtask.data.TaskDAO;
 import com.skilldistillery.householdtask.entities.Task;
@@ -25,23 +25,31 @@ public class TaskController {
 	}
 	
 	
-	@GetMapping(path = "GetTaskData.do", params = "idLookup")
+	@GetMapping(path = "GetTaskDataId.do", params = "idLookup")
 	public String findTaskById(Model model, int idLookup) {
 		Task task = taskDao.findById(idLookup);
 		model.addAttribute("task", task);
-		return "result";
+		return "task/result";
 	}
 	
-	@GetMapping(path = "GetTaskData.do", params = "keyword")
+	@GetMapping(path = "GetTaskDataKeyword.do", params = "keyword")
 	public String findTasksByKeyword(Model model, String keyword) {
 		List<Task> taskList = taskDao.findByKeyword(keyword);
 		model.addAttribute("taskList", taskList);
-		return "results";
+		return "task/results";
 	}
-//	@GetMapping("getFilm.do")
-//	public String getFilm(Integer fid, Model model) {
-//		Film film = filmDao.findById(fid);
-//		model.addAttribute("film", film);
-//		return "film/show";
-//	}
+	
+	@PostMapping(path="NewTask.do")
+	public String createTask(Model model, Task task) {
+		Task addedTask = taskDao.create(task);
+		model.addAttribute("task", addedTask);
+		return "task/result";
+	}
+	
+	@GetMapping(path="editTaskForm", params="taskId")
+	public String editTaskForm(Model model, int taskId) {
+		Task task = taskDao.findById(taskId);
+		model.addAttribute("task", task);
+		return "updateTask";
+	}
 }

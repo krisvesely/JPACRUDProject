@@ -13,7 +13,7 @@
 
 <a href="idForm.html">Lookup task by ID</a><br/>
 <a href="keywordForm.html">Lookup task by keyword</a><br/>
-<a href="newTask.html">Add a task</a><br/>
+<a href="addTask.html">Add a task</a><br/>
 
 ${taskList}
 </body>

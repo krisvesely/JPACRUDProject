@@ -11,6 +11,6 @@ public interface TaskDAO {
 	List<Task> findAll();
 	
 	Task create(Task task);
-	Task update(Task task);
+	Task update(Task task, int taskId);
 	boolean deleteById(int taskId);	
 }
