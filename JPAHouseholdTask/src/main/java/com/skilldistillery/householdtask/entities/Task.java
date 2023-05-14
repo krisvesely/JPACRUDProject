@@ -96,7 +96,7 @@ public class Task {
 	}
 
 	public void setNotes(String notes) {
-		this.notes = LocalDate.now().toString() + ": " + notes;
+		this.notes = notes;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.skilldistillery.householdtask.data;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -35,7 +36,7 @@ public class TaskDAOImpl implements TaskDAO {
 
 	@Override
 	public List<Task> findAll() {
-		String queryString = "SELECT task FROM Task task";
+		String queryString = "SELECT task FROM Task task ORDER BY task.dateRequired";
 		List<Task> taskList = em.createQuery(queryString, Task.class)
 				.getResultList();
 		return taskList;
@@ -43,6 +44,10 @@ public class TaskDAOImpl implements TaskDAO {
 
 	@Override
 	public Task create(Task task) {
+		String notes = task.getNotes();
+		if (notes != null && !notes.equals("")) {
+			task.setNotes(LocalDate.now().toString() + ": " + notes);
+		}
 		em.persist(task);
 		Task newTask = em.find(Task.class, task.getId());
 		return newTask;
@@ -59,8 +64,8 @@ public class TaskDAOImpl implements TaskDAO {
 		managedTask.setCost(updatingTask.getCost());
 		String existingNotes = managedTask.getNotes();
 		String newNotes = updatingTask.getNotes();
-		if(existingNotes != null && !existingNotes.equals("") && !existingNotes.equals(newNotes)) {
-			String aggregateNotes = existingNotes + "\n" + newNotes;
+		if(existingNotes != null && !existingNotes.equals("")) {
+			String aggregateNotes = existingNotes + "\n" + LocalDate.now().toString() + ": " + newNotes;
 			managedTask.setNotes(aggregateNotes);
 		}
 		else {
@@ -72,7 +77,13 @@ public class TaskDAOImpl implements TaskDAO {
 	@Override
 	public boolean deleteById(int taskId) {
 		Task deletingTask = em.find(Task.class, taskId);
-		em.remove(deletingTask);
+		if (deletingTask != null) {
+			em.remove(deletingTask);
+			if (em.contains(deletingTask)) {
+				return false;
+			}
+		return true;
+		}
 		return false;
 	}
 

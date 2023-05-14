@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.householdtask.data.TaskDAO;
 import com.skilldistillery.householdtask.entities.Task;
@@ -46,10 +47,31 @@ public class TaskController {
 		return "task/result";
 	}
 	
-	@GetMapping(path="editTaskForm", params="taskId")
+	@GetMapping(path="editTaskForm.do", params="taskId")
 	public String editTaskForm(Model model, int taskId) {
 		Task task = taskDao.findById(taskId);
 		model.addAttribute("task", task);
-		return "updateTask";
+		return "task/updateTask";
+	}
+	
+	@PostMapping(path="submitUpdate.do", params="taskId")
+	public String updateTask(Model model, Task task, int taskId, RedirectAttributes redir) {
+		Task updatedTask = taskDao.update(task, taskId);
+		model.addAttribute("task", updatedTask);
+		redir.addFlashAttribute("task", updatedTask);
+		return "redirect:updateTask.do";
+	}
+	
+	@GetMapping(path="updateTask.do")
+	public String updateRoute(Model model) {
+		return "task/result";
+	}
+	
+	@RequestMapping(path = {"deleteTask.do"}, params = "taskId")
+	public String deleteFilm(Model model, int taskId) {
+		boolean deleted = taskDao.deleteById(taskId);
+		System.out.println(deleted);
+		model.addAttribute("deleted", deleted);
+		return "task/deleteResult";
 	}
 }

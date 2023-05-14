@@ -9,13 +9,13 @@
 <title>Edit Task</title>
 </head>
 <body>
-	<form action="NewTask.do" method="POST">
+	<form action="submitUpdate.do?taskId=${task.id}" method="POST">
 		<label for="name">Name:</label> 
-		<input type="text" id="name" name="name" maxlength="45" required> 
+		<input type="text" id="name" name="name" maxlength="45" value="${task.name}"> 
 		<br> 
 		<label for="category-select">Category:</label> 
-		<select id=category-select name="category" required>
-			<option value="">Please choose an option</option>
+		<select id=category-select name="category">
+			<option value="${task.category}" selected>${task.category}</option>
 			<option value="Garden">Garden</option>
 			<option value="Home - Crawlspace">Home - Crawlspace</option>
 			<option value="Home - Exterior">Home - Exterior</option>
@@ -24,7 +24,7 @@
 		<br>
 		<label for="frequency-select">Frequency:</label> 
 		<select	id=category-select name="frequency">
-			<option value="">Please choose an option</option>
+			<option  value="${task.frequency}" selected>${task.frequency}</option>
 			<option value="one-time">one-time</option>
 			<option value="quarterly">quarterly</option>
 			<option value="annually">annually</option>
@@ -33,18 +33,18 @@
 		</select> 
 		<br>
 		<label for="dateLastCompleted"></label>
-		<input type="date" id="dateLastCompleted" name="dateLastCompleted">
+		<input type="date" id="dateLastCompleted" name="dateLastCompleted" value="${task.dateLastCompleted}">
 		<br>
 		<label for="dateRequired"></label>
-		<input type="date" id="dateRequired" name="dateRequired">
+		<input type="date" id="dateRequired" name="dateRequired" value="${task.dateRequired}">
 		<br>
 		<label for="cost">Cost: $</label> 
-		<input type="number" id="cost" name="cost" min="00.00" max="900000.00" step="0.01" value="00.00"> 
+		<input type="number" id="cost" name="cost" min="00.00" max="900000.00" step="0.01" value="${task.cost}"> 
 		<br>
 		<label for="notes">Notes:</label> 
 		<input type="text" id="notes" name="notes"> 
 		<br> 
-		<input type="submit" value="Add Task">
+		<input type="submit" value="Update Task">
 	</form>
 </body>
 </html>

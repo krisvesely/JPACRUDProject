@@ -6,13 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Household Task Manager</title>
+<title>Task Results</title>
 </head>
 <body>
 <c:choose>
-	<c:when test="${not empty tasks}">
-		<c:forEach var="task" items="tasks">
-			<c:if test="${not empty task}">
+	<c:when test="${not empty taskList}">
+		<c:forEach var="task" items="${taskList}">
 				<table>
 					<thead>
 						<tr>
@@ -69,7 +68,6 @@
 						</tr>
 					</tbody>
 				</table>
-			</c:if>
 		</c:forEach>
 	</c:when>
 	<c:otherwise>No tasks found.</c:otherwise>
