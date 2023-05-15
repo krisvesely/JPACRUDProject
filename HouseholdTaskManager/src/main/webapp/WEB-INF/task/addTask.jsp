@@ -37,7 +37,8 @@
 				<option value="quarterly">quarterly</option>
 				<option value="annually">annually</option>
 				<option value="every 2 years">every 2 years</option>
-				<option value="every 2 years">every 5 years</option>
+				<option value="every 3 years">every 3 years</option>
+				<option value="every 5 years">every 5 years</option>
 			</select> 
 			<br>
 			<label for="dateLastCompleted">Date Last Completed:</label>
