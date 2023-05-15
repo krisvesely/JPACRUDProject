@@ -64,12 +64,14 @@ public class TaskDAOImpl implements TaskDAO {
 		managedTask.setCost(updatingTask.getCost());
 		String existingNotes = managedTask.getNotes();
 		String newNotes = updatingTask.getNotes();
-		if(existingNotes != null && !existingNotes.equals("")) {
-			String aggregateNotes = existingNotes + "\n" + LocalDate.now().toString() + ": " + newNotes;
-			managedTask.setNotes(aggregateNotes);
-		}
-		else {
-			managedTask.setNotes(newNotes);
+		if (newNotes != null && !newNotes.equals("")) {
+			if(existingNotes != null && !existingNotes.equals("")) {
+				String aggregateNotes = existingNotes + "\n" + LocalDate.now().toString() + ": " + newNotes;
+				managedTask.setNotes(aggregateNotes);
+			}
+			else {
+				managedTask.setNotes(newNotes);
+			}
 		}
 		return managedTask;
 	}

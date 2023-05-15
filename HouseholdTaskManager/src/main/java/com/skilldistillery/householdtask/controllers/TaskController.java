@@ -25,25 +25,33 @@ public class TaskController {
 	   return "home"; 
 	}
 	
-	
-	@GetMapping(path = "GetTaskDataId.do", params = "idLookup")
+	@GetMapping(path = "getTaskDataId.do", params = "idLookup")
 	public String findTaskById(Model model, int idLookup) {
+		String resultType = "viewById";
 		Task task = taskDao.findById(idLookup);
 		model.addAttribute("task", task);
+		model.addAttribute("resultType", resultType);
 		return "task/result";
 	}
 	
-	@GetMapping(path = "GetTaskDataKeyword.do", params = "keyword")
+	@GetMapping(path = "getTaskDataKeyword.do", params = "keyword")
 	public String findTasksByKeyword(Model model, String keyword) {
 		List<Task> taskList = taskDao.findByKeyword(keyword);
 		model.addAttribute("taskList", taskList);
 		return "task/results";
 	}
 	
-	@PostMapping(path="NewTask.do")
+	@RequestMapping(path="addTask.do")
+	public String addForm() {
+		return "task/addTask"; 
+	}
+	
+	@PostMapping(path="newTask.do")
 	public String createTask(Model model, Task task) {
+		String resultType = "viewNew";
 		Task addedTask = taskDao.create(task);
 		model.addAttribute("task", addedTask);
+		model.addAttribute("resultType", resultType);
 		return "task/result";
 	}
 	
@@ -64,6 +72,8 @@ public class TaskController {
 	
 	@GetMapping(path="updateTask.do")
 	public String updateRoute(Model model) {
+		String resultType = "viewUpdate";
+		model.addAttribute("resultType", resultType);
 		return "task/result";
 	}
 	
