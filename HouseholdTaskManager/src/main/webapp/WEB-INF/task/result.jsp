@@ -26,7 +26,7 @@
 					<h4><em>Here is your newly entered task.</em></h4>
 					<br>
 				</c:if>
-				<c:if test="${resultType eq 'viewById'}">
+				<c:if test="${resultType eq 'viewUpdate'}">
 					<h4><em>Here are the edited details for Task ID: ${task.id}.</em></h4>
 					<br>
 				</c:if>
