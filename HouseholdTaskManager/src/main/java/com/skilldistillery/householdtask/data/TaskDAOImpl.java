@@ -59,18 +59,22 @@ public class TaskDAOImpl implements TaskDAO {
 		managedTask.setName(updatingTask.getName());
 		managedTask.setCategory(updatingTask.getCategory());
 		managedTask.setFrequency(updatingTask.getFrequency());
-		managedTask.setDateLastCompleted(updatingTask.getDateLastCompleted().toString());
-		managedTask.setDateRequired(updatingTask.getDateRequired().toString());
+		if (updatingTask.getDateLastCompleted() != null && !updatingTask.getDateLastCompleted().equals("")) {
+			managedTask.setDateLastCompleted(updatingTask.getDateLastCompleted().toString());
+		}
+		if (updatingTask.getDateRequired() != null && !updatingTask.getDateRequired().equals("")) {
+			managedTask.setDateRequired(updatingTask.getDateRequired().toString());
+		}
 		managedTask.setCost(updatingTask.getCost());
 		String existingNotes = managedTask.getNotes();
 		String newNotes = updatingTask.getNotes();
 		if (newNotes != null && !newNotes.equals("")) {
 			if(existingNotes != null && !existingNotes.equals("")) {
-				String aggregateNotes = existingNotes + "\n" + LocalDate.now().toString() + ": " + newNotes;
+				String aggregateNotes = existingNotes + ", " + LocalDate.now().toString() + ": " + newNotes;
 				managedTask.setNotes(aggregateNotes);
 			}
 			else {
-				managedTask.setNotes(newNotes);
+				managedTask.setNotes(LocalDate.now().toString() + ": " + newNotes);
 			}
 		}
 		return managedTask;

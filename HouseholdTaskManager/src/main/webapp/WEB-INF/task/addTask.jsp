@@ -6,14 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Add Task</title>
+<jsp:include page="../bootstrapHead.jsp"></jsp:include>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 	<header>
 		<%@ include file="../nav.jsp"%>
 	</header>
-	<section class="form">
-		<h4>Please enter these details for the new task:</h4>
+	<div class="container">
+		<br>
+		<h4><em>Please enter these details for the new task:</em></h4>
 		<br>
 		<form action="newTask.do" method="POST">
 			<label for="name">Name:</label> 
@@ -38,10 +40,10 @@
 				<option value="every 2 years">every 5 years</option>
 			</select> 
 			<br>
-			<label for="dateLastCompleted"></label>
+			<label for="dateLastCompleted">Date Last Completed:</label>
 			<input type="date" id="dateLastCompleted" name="dateLastCompleted">
 			<br>
-			<label for="dateRequired"></label>
+			<label for="dateRequired">Date Required:</label>
 			<input type="date" id="dateRequired" name="dateRequired">
 			<br>
 			<label for="cost">Cost: $</label> 
@@ -52,6 +54,7 @@
 			<br> 
 			<input type="submit" value="Add Task">
 		</form>
-	</section>
+	</div>
+<jsp:include page="../bootstrapFoot.jsp"></jsp:include>
 </body>
 </html>

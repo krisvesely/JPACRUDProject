@@ -14,20 +14,21 @@
 	<header>
 		<%@ include file="../nav.jsp"%>
 	</header>
-<section class="tasks">	
+<div class="container">
 	<c:choose>
 		<c:when test="${not empty taskList}">
+			<h4><em>Here are the tasks containing the keyword '${keyword}'.</em></h4>
 			<c:forEach var="task" items="${taskList}">
-					<table class="task">
+					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<th>Task: ${task.name}</th>
+								<th colspan="4">Task: ${task.name}</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td colspan="3">Category: ${task.category}</td>
-								<td colspan="1">ID: ${task.id}</td>
+								<td colspan="2">Category: ${task.category}</td>
+								<td colspan="2">ID: ${task.id}</td>
 							</tr>
 							<tr>
 								<td colspan="2">Date Last Completed:<br>
@@ -48,7 +49,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td colspan="3">Frequency:  
+								<td colspan="2">Frequency:  
 									<c:choose> 
 										<c:when test="${not empty task.frequency}">
 											${task.frequency}
@@ -56,10 +57,10 @@
 										<c:otherwise>none recorded</c:otherwise>
 									</c:choose>
 								</td>
-								<td colspan="1">Cost: $${task.cost}0</td>
+								<td colspan="2">Cost: $${task.cost}0</td>
 							</tr>
 							<tr>
-								<td>Notes: 
+								<td colspan="4">Notes: 
 									<c:choose> 
 										<c:when test="${not empty task.notes}">
 											${task.notes}
@@ -79,7 +80,7 @@
 		</c:when>
 		<c:otherwise>No tasks found.</c:otherwise>
 	</c:choose>
-</section>
+</div>
 <jsp:include page="../bootstrapFoot.jsp"></jsp:include>
 </body>
 </html>

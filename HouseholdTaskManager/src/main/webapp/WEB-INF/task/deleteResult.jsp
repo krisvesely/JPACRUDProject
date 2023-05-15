@@ -16,16 +16,17 @@
 	<header>
 		<%@ include file="../nav.jsp"%>
 	</header>
-	<section>
+	<div class="container">
+		<br>
 		<c:choose>
 			<c:when test="${deleted == true}">
-				<p>Task deletion successful.</p>
+				<h4>Task deletion successful.</h4>
 			</c:when>
 			<c:otherwise>
-				<p>Task deletion unsuccessful.</p>
+				<h4>Task deletion unsuccessful.</h4>
 			</c:otherwise>
 		</c:choose>
-	</section>
+	</div>
 <jsp:include page="../bootstrapFoot.jsp"></jsp:include>
 </body>
 </html>

@@ -72,7 +72,12 @@ public class Task {
 	}
 
 	public void setDateLastCompleted(String dateLastCompleted) {
+		if (dateLastCompleted != null && !dateLastCompleted.equals("")) {
 		this.dateLastCompleted = LocalDate.parse(dateLastCompleted);
+		}
+		else {
+			this.dateLastCompleted = null;
+		}
 	}
 
 	public LocalDate getDateRequired() {
@@ -80,7 +85,12 @@ public class Task {
 	}
 
 	public void setDateRequired(String dateRequired) {
+		if (dateRequired != null && !dateRequired.equals("")) {
 		this.dateRequired = LocalDate.parse(dateRequired);
+		}
+		else {
+			this.dateRequired = null;
+		}
 	}
 
 	public double getCost() {

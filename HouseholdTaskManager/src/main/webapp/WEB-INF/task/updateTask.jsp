@@ -14,7 +14,8 @@
 	<header>
 		<%@ include file="../nav.jsp"%>
 	</header>
-	<section class="form">
+	<div class="container">
+		<br>
 		<h3>Please modify any fields that you want to update:</h3>
 		<br>
 		<form action="submitUpdate.do?taskId=${task.id}" method="POST">
@@ -40,10 +41,10 @@
 				<option value="every 2 years">every 5 years</option>
 			</select> 
 			<br>
-			<label for="dateLastCompleted"></label>
+			<label for="dateLastCompleted">Date Last Completed:</label>
 			<input type="date" id="dateLastCompleted" name="dateLastCompleted" value="${task.dateLastCompleted}">
 			<br>
-			<label for="dateRequired"></label>
+			<label for="dateRequired">Date Required:</label>
 			<input type="date" id="dateRequired" name="dateRequired" value="${task.dateRequired}">
 			<br>
 			<label for="cost">Cost: $</label> 
@@ -54,7 +55,7 @@
 			<br> 
 			<input type="submit" value="Update Task">
 		</form>
-	</section>
+	</div>
 <jsp:include page="../bootstrapFoot.jsp"></jsp:include>
 </body>
 </html>

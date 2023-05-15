@@ -38,6 +38,7 @@ public class TaskController {
 	public String findTasksByKeyword(Model model, String keyword) {
 		List<Task> taskList = taskDao.findByKeyword(keyword);
 		model.addAttribute("taskList", taskList);
+		model.addAttribute("keyword", keyword);
 		return "task/results";
 	}
 	

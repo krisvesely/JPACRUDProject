@@ -14,22 +14,32 @@
 	<header>
 		<%@ include file="../nav.jsp"%>
 	</header>
-	<section class="task">
+	<div class="container">
+		<br>
 		<c:choose>
 			<c:when test="${not empty task}">
-				<c:if test="${resultType == viewById}">
-					<h4>Here are the details for Task ID: ${task.id}</h4>
+				<c:if test="${resultType eq 'viewById'}">
+					<h4><em>Here are the details for Task ID: ${task.id}.</em></h4>
+					<br>
 				</c:if>
-				<table class="task">
+				<c:if test="${resultType eq 'viewNew'}">
+					<h4><em>Here is your newly entered task.</em></h4>
+					<br>
+				</c:if>
+				<c:if test="${resultType eq 'viewById'}">
+					<h4><em>Here are the edited details for Task ID: ${task.id}.</em></h4>
+					<br>
+				</c:if>
+				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th>Task: ${task.name}</th>
+							<th colspan="4">Task: ${task.name}</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td colspan="3">Category: ${task.category}</td>
-							<td colspan="1">ID: ${task.id}</td>
+							<td colspan="2">Category: ${task.category}</td>
+							<td colspan="2">ID: ${task.id}</td>
 						</tr>
 						<tr>
 							<td colspan="2">Date Last Completed:<br>
@@ -50,7 +60,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="3">Frequency:  
+							<td colspan="2">Frequency:  
 								<c:choose> 
 									<c:when test="${not empty task.frequency}">
 										${task.frequency}
@@ -58,10 +68,10 @@
 									<c:otherwise>none recorded</c:otherwise>
 								</c:choose>
 							</td>
-							<td colspan="1">Cost: $${task.cost}0</td>
+							<td colspan="2">Cost: $${task.cost}0</td>
 						</tr>
 						<tr>
-							<td>Notes: 
+							<td colspan="4">Notes: 
 								<c:choose> 
 									<c:when test="${not empty task.notes}">
 										${task.notes}
@@ -79,7 +89,7 @@
 			</c:when>
 			<c:otherwise>Task does not exist.</c:otherwise>
 		</c:choose>
-	</section>
+	</div>
 <jsp:include page="../bootstrapFoot.jsp"></jsp:include>
 </body>
 </html>
